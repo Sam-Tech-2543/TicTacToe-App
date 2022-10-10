@@ -2,6 +2,7 @@ package com.example.tictactoe;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     String playerName;
     Boolean gameState = true;
+    int winSound = 0;
     int moves = 0;
     int[] board = {0, 0, 0, 0, 0, 0, 0, 0, 0};
     int[][] winningPos = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
@@ -44,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
             }
             moves++;
             img.animate().alpha(1).setDuration(750);
+
+            MediaPlayer move = MediaPlayer.create(this, R.raw.move);
+            move.start();
         }
 
         // Checking for the Winner
@@ -52,11 +57,13 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Player X won the Game!", Toast.LENGTH_SHORT).show();
 
                 gameState = false;
+                winSound++;
             }
             else if (board[winningPos[i][0]] == 2 && board[winningPos[i][1]] == 2 && board[winningPos[i][2]] == 2) {
                 Toast.makeText(this, "Player O won the Game!", Toast.LENGTH_SHORT).show();
 
                 gameState = false;
+                winSound++;
             }
         }
 
@@ -64,8 +71,13 @@ public class MainActivity extends AppCompatActivity {
         if (moves == 9 && gameState) {
             Toast.makeText(this, "Game Drawn!", Toast.LENGTH_SHORT).show();
             moves = 0;
+            winSound++;
         }
 
+        if (winSound==1){
+            MediaPlayer win = MediaPlayer.create(this, R.raw.win);
+            win.start();
+        }
     }
 
     public void clearBoard(View view) {
@@ -100,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
         playerName = "X";
         gameState = true;
+        winSound = 0;
         moves = 0;
     }
 }
