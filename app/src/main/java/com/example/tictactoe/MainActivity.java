@@ -57,13 +57,12 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Player X won the Game!", Toast.LENGTH_SHORT).show();
 
                 gameState = false;
-                winSound++;
-            }
-            else if (board[winningPos[i][0]] == 2 && board[winningPos[i][1]] == 2 && board[winningPos[i][2]] == 2) {
+                winSound = winSound + 1;
+            } else if (board[winningPos[i][0]] == 2 && board[winningPos[i][1]] == 2 && board[winningPos[i][2]] == 2) {
                 Toast.makeText(this, "Player O won the Game!", Toast.LENGTH_SHORT).show();
 
                 gameState = false;
-                winSound++;
+                winSound = winSound + 1;
             }
         }
 
@@ -71,10 +70,10 @@ public class MainActivity extends AppCompatActivity {
         if (moves == 9 && gameState) {
             Toast.makeText(this, "Game Drawn!", Toast.LENGTH_SHORT).show();
             moves = 0;
-            winSound++;
+            winSound = winSound + 1;
         }
 
-        if (winSound==1){
+        if (winSound == 1) {
             MediaPlayer win = MediaPlayer.create(this, R.raw.win);
             win.start();
         }
