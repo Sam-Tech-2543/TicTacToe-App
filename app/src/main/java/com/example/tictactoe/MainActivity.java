@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     Boolean gameState = true;
     int winSound = 0;
     int moves = 0;
+    Boolean sound = false;
     int[] board = {0, 0, 0, 0, 0, 0, 0, 0, 0};
     int[][] winningPos = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6}, {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};
 
@@ -47,8 +48,10 @@ public class MainActivity extends AppCompatActivity {
             moves++;
             img.animate().alpha(1).setDuration(750);
 
-            MediaPlayer move = MediaPlayer.create(this, R.raw.move);
-            move.start();
+            if (sound){
+                MediaPlayer move = MediaPlayer.create(this, R.raw.move);
+                move.start();
+            }
         }
 
         // Checking for the Winner
@@ -74,8 +77,24 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (winSound == 1) {
-            MediaPlayer win = MediaPlayer.create(this, R.raw.win);
-            win.start();
+            if (sound){
+                MediaPlayer win = MediaPlayer.create(this, R.raw.win);
+                win.start();
+            }
+        }
+    }
+
+    public void soundOptions(View view) {
+        if (sound) {
+            sound = false;
+            // To change to Sound Icon
+            ImageView s = findViewById(R.id.sound);
+            s.setImageResource(R.drawable.son);
+        } else {
+            sound = true;
+            // To change to Mute Icon
+            ImageView s = findViewById(R.id.sound);
+            s.setImageResource(R.drawable.soff);
         }
     }
 
@@ -113,5 +132,9 @@ public class MainActivity extends AppCompatActivity {
         gameState = true;
         winSound = 0;
         moves = 0;
+    }
+
+    public void closeApp(View view){
+        finish();
     }
 }

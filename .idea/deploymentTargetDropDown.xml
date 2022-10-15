@@ -7,11 +7,11 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\manka\.android\avd\Resizable_API_33_6.avd" />
+            <value value="C:\Users\manka\.android\avd\Resizable_API_33_10.avd" />
           </Key>
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-10-07T15:48:02.773753700Z" />
+    <timeTargetWasSelectedWithDropDown value="2022-10-15T19:13:12.436423400Z" />
   </component>
 </project>
